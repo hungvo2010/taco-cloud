@@ -32,6 +32,7 @@ public class OrderController {
     @PostMapping
     public String processOrder(@Valid TacoOrder order, Errors errors,
                                SessionStatus sessionStatus) {
+        log.info(errors.getAllErrors().toString());
         if (errors.hasErrors()) {
             return "orderForm";
         }

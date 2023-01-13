@@ -63,7 +63,7 @@ public class DesignTacoController {
 //                new Ingredient("SLSA", "Salsa", Type.SAUCE),
 //                new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
 //        );
-        List<Ingredient> ingredients = ingredientRepository.findAll();
+        Iterable<Ingredient> ingredients = ingredientRepository.findAll();
         Type[] types = Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
@@ -93,10 +93,13 @@ public class DesignTacoController {
         return "redirect:/orders/current";
     }
 
-    private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
-        return ingredients
-                .stream()
-                .filter(x -> x.getType().equals(type))
-                .collect(Collectors.toList());
+    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
+        List<Ingredient> result = new ArrayList<>();
+        ingredients.forEach(ingredient -> {
+            if (ingredient.getType().equals(type)){
+                result.add(ingredient);
+            }
+        });
+        return result;
     }
 }
