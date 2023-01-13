@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Taco Cloud</title>
+</head>
+<body>
+<h1>Welcome to...</h1>
+<h2 th:text="${testModel}">Welcome to...</h2>
+<!--<span th:text="${testModel}">INGREDIENT</span>-->
+
+<img th:src="@{/images/TacoCloud.png}" th:alt="@{testModel}"/>
+</body>
+</html>
