@@ -4,6 +4,7 @@ import com.starter.springboot.model.TacoOrder;
 import com.starter.springboot.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class PostmanController {
     private OrderRepository repository;
     @Autowired
-    public PostmanController(OrderRepository repo, String name){
+    public PostmanController(OrderRepository repo){
         this.repository = repo;
     }
     @GetMapping("/postman")
