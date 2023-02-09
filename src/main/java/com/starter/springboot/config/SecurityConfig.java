@@ -26,6 +26,7 @@ public class SecurityConfig {
         return username -> {
             log.info(username);
             User user = userRepo.findByUsername(username);
+//            log.info(user.toString());
             if (user != null) return user;
             throw new UsernameNotFoundException("User " + username + " not found.");
         };
