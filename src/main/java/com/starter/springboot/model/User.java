@@ -1,35 +1,45 @@
 package com.starter.springboot.model;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
 import java.util.Arrays;
 import java.util.Collection;
 
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
+@Table(name = "User")
+//@Entity
 public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
     @Id
-    private long id;
+    private Long id;
+    private String username;
+    private String password;
+    private String fullname;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
 
-    private final String username;
-    private final String password;
-    private final String fullname;
-    private final String street;
-    private final String city;
-    private final String state;
-    private final String zip;
-    private final String phoneNumber;
+    public User(String username, String password, String fullname, String street, String city, String state, String zip, String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+    }
+
+    private String phoneNumber;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));

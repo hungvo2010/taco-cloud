@@ -6,6 +6,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @Table("Ingredient")
+//@Entity
 public class Ingredient {
     @Id
     private final String id;
