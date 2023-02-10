@@ -34,7 +34,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.csrf().disable()
+        return http
                 .authorizeRequests()
                 .antMatchers("/design", "/orders").hasRole("USER")
                 .antMatchers(HttpMethod.POST, "/design", "/orders").hasRole("USER")
@@ -42,7 +42,13 @@ public class SecurityConfig {
                 .and()
                     .formLogin()
                         .loginPage("/login")
-                .defaultSuccessUrl("/design", true)
+                            .defaultSuccessUrl("/design", true)
+                .and()
+                    .oauth2Login()
+                        .loginPage("/login")
+                .and()
+                    .logout()
+                        .logoutSuccessUrl("/")
                 .and()
                     .build();
     }
